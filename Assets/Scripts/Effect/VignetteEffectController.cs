@@ -1,6 +1,6 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;  // Post-processingの名前空間
+using DG.Tweening;  // DoTweenの名前空間
 
 public class VignetteEffectController : SingletonMonoBehaviour<VignetteEffectController>
 {
@@ -15,7 +15,7 @@ public class VignetteEffectController : SingletonMonoBehaviour<VignetteEffectCon
 
     private Vignette vignette;
     private bool isEffectActive = false;
-    private Coroutine animationCoroutine;
+    private Tween currentTween;
 
     public enum AnimationType
     {
@@ -42,26 +42,13 @@ public class VignetteEffectController : SingletonMonoBehaviour<VignetteEffectCon
         StopVignetteEffect();  // 初期状態でエフェクトを停止
     }
 
-    // エフェクトのOn/Offを切り替えるメソッド
-    public void ToggleVignetteEffect()
-    {
-        if (isEffectActive)
-        {
-            StopVignetteEffect();
-        }
-        else
-        {
-            StartVignetteEffect();
-        }
-    }
-
     // エフェクトを開始する
     public void StartVignetteEffect()
     {
-        if (vignette != null && animationCoroutine == null)
+        if (vignette != null && !isEffectActive)
         {
             isEffectActive = true;
-            animationCoroutine = StartCoroutine(AnimateVignetteIntensity());
+            AnimateVignetteEffect();
         }
     }
 
@@ -71,10 +58,10 @@ public class VignetteEffectController : SingletonMonoBehaviour<VignetteEffectCon
         if (vignette != null)
         {
             isEffectActive = false;
-            if (animationCoroutine != null)
+            if (currentTween != null)
             {
-                StopCoroutine(animationCoroutine);  // コルーチンを停止
-                animationCoroutine = null;  // コルーチン変数をリセット
+                currentTween.Kill();  // 現在のTweenを停止
+                currentTween = null;
             }
             vignette.intensity.value = 0;  // Intensityをリセット
             Debug.Log("エフェクトを停止しました");
@@ -82,51 +69,45 @@ public class VignetteEffectController : SingletonMonoBehaviour<VignetteEffectCon
     }
 
     // VignetteのIntensityをアニメーションで永続的に増減させる
-    private IEnumerator AnimateVignetteIntensity()
+    private void AnimateVignetteEffect()
     {
-        while (true)
-        {
-            // IntensityをmaxIntensityに向かって増加させるアニメーション
-            yield return StartCoroutine(AnimateToValue(maxIntensity, increaseDuration, increaseType));
+        Sequence sequence = DOTween.Sequence();
 
-            // アニメーションの間に待機
-            yield return new WaitForSeconds(waitDuration);
+        // IntensityをmaxIntensityに向かって増加させるアニメーション
+        sequence.Append(AnimateToValue(maxIntensity, increaseDuration, increaseType));
 
-            // Intensityを0に向かって減少させるアニメーション
-            yield return StartCoroutine(AnimateToValue(0, decreaseDuration, decreaseType));
+        // アニメーションの間に待機
+        sequence.AppendInterval(waitDuration);
 
-        }
+        // Intensityを0に向かって減少させるアニメーション
+        sequence.Append(AnimateToValue(0, decreaseDuration, decreaseType));
+
+        // ループさせる
+        sequence.SetLoops(-1);
+
+        // 現在のTweenを保持しておく
+        currentTween = sequence;
     }
 
     // Intensityを目標値までアニメーションさせる
-    private IEnumerator AnimateToValue(float targetValue, float duration, AnimationType animationType)
+    private Tween AnimateToValue(float targetValue, float duration, AnimationType animationType)
     {
-        float startValue = vignette.intensity.value;
-        float elapsedTime = 0;
-
-        while (elapsedTime < duration)
+        Ease easeType = Ease.Linear;
+        switch (animationType)
         {
-            float t = elapsedTime / duration;
-
-            // アニメーションタイプに応じた補間
-            switch (animationType)
-            {
-                case AnimationType.Linear:
-                    vignette.intensity.value = Mathf.Lerp(startValue, targetValue, t);
-                    break;
-                case AnimationType.Exponential:
-                    vignette.intensity.value = Mathf.Lerp(startValue, targetValue, Mathf.Pow(t, 2));  // t^2で加速
-                    break;
-                case AnimationType.Logarithmic:
-                    vignette.intensity.value = Mathf.Lerp(startValue, targetValue, Mathf.Log10(t + 1) / Mathf.Log10(2)); // 対数で減速
-                    break;
-            }
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            case AnimationType.Exponential:
+                easeType = Ease.InQuad;  // 加速アニメーション
+                break;
+            case AnimationType.Logarithmic:
+                easeType = Ease.OutQuad;  // 減速アニメーション
+                break;
+            case AnimationType.Linear:
+            default:
+                easeType = Ease.Linear;
+                break;
         }
 
-        // 最後に目標値をセットして終了
-        vignette.intensity.value = targetValue;
+        return DOTween.To(() => vignette.intensity.value, x => vignette.intensity.value = x, targetValue, duration)
+                      .SetEase(easeType);
     }
 }
