@@ -33,6 +33,7 @@ public class TimeLimitController : SingletonMonoBehaviour<TimeLimitController>
                 ResetEffect();
                 TimeUp(); // 時間が切れた時の処理を呼び出し
                 StopTimer(); // タイマーを停止
+                return;
             }
             else if (currentTime <= effectTriggerTime && !isEffectTriggered) 
             {
