@@ -18,6 +18,7 @@ public class MassColorChecker : MonoBehaviour
     private GameObject[] mass = new GameObject[4]; // オブジェクトを保存する配列
     private int massIndex = 0; // 配列のインデックス
     private bool loadGameOver = false;
+    private bool shouldResetBoardSetup = false; // ResetBoardSetupを実行するかを示すフラグ
 
     private void OnTriggerStay(Collider other)
     {
@@ -39,6 +40,16 @@ public class MassColorChecker : MonoBehaviour
             {
                 StartCoroutine(HandleGameOverCoroutine());
             }
+        }
+    }
+
+    private void LateUpdate()
+    {
+        // フラグが立っていればボードリセットの処理を実行
+        if (shouldResetBoardSetup)
+        {
+            ExecuteResetBoardSetup();
+            shouldResetBoardSetup = false; // フラグをリセット
         }
     }
 
@@ -95,15 +106,21 @@ public class MassColorChecker : MonoBehaviour
             }
         }
 
-        // DOTweenを使って指定した遅延時間後にResetBoardSetupを呼び出す
+        // DOTweenを使って指定した遅延時間後にフラグを立てる
         DOTween.Sequence().AppendInterval(resetDelay).AppendCallback(() => {
-            GameStateManager.Instance.ResetBoardSetup();
-            TimeLimitController.Instance.ResetEffect();
+            shouldResetBoardSetup = true; // 遅延後にフラグをセット
         });
 
         loadGameOver = true;
         ScenesLoader.Instance.LoadGameOver(3.0f);
         yield return null; // Coroutineを終了するために待機（必要に応じて他の処理を追加）
+    }
+
+    // ボードリセットの処理をメソッド化
+    private void ExecuteResetBoardSetup()
+    {
+        GameStateManager.Instance.ResetBoardSetup();
+        TimeLimitController.Instance.ResetEffect();
     }
 
     // 登録したマスの状態を切り替えるメソッド

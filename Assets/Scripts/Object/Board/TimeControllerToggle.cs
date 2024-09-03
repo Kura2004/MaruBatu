@@ -67,7 +67,7 @@ public class TimeControllerToggle : MonoBehaviour
     {
         TimeLimitController.Instance.StopTimer();
         ScenesAudio.ShootSe();
-        ScenesAudio.PauseBgm();
+        //ScenesAudio.PauseBgm();
         backShaker.StopShake();
 
         // 現在のアニメーションを停止
@@ -94,7 +94,7 @@ public class TimeControllerToggle : MonoBehaviour
     {
         TimeLimitController.Instance.StartTimer();
         ScenesAudio.RestartSe();
-        ScenesAudio.UnPauseBgm();
+        //ScenesAudio.UnPauseBgm();
         // 現在のアニメーションを停止
         if (currentTween != null && currentTween.IsActive())
         {
