@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;  // Post-processingの名前空間
-using System.Collections;
+using DG.Tweening;  // DoTweenの名前空間
 
 public class ChromaticAberrationEffectController : SingletonMonoBehaviour<ChromaticAberrationEffectController>
 {
@@ -15,7 +15,7 @@ public class ChromaticAberrationEffectController : SingletonMonoBehaviour<Chroma
 
     private ChromaticAberration chromaticAberration;
     private bool isEffectActive = false;
-    private Coroutine animationCoroutine;
+    private Tween currentTween;
 
     public enum AnimationType
     {
@@ -58,10 +58,10 @@ public class ChromaticAberrationEffectController : SingletonMonoBehaviour<Chroma
     // エフェクトを開始する
     public void StartChromaticAberrationEffect()
     {
-        if (chromaticAberration != null && animationCoroutine == null)
+        if (chromaticAberration != null && !isEffectActive)
         {
             isEffectActive = true;
-            animationCoroutine = StartCoroutine(AnimateChromaticAberrationIntensity());
+            AnimateChromaticAberrationEffect();
         }
     }
 
@@ -71,61 +71,56 @@ public class ChromaticAberrationEffectController : SingletonMonoBehaviour<Chroma
         if (chromaticAberration != null)
         {
             isEffectActive = false;
-            if (animationCoroutine != null)
+            if (currentTween != null)
             {
-                StopCoroutine(animationCoroutine);  // コルーチンを停止
-                animationCoroutine = null;  // コルーチン変数をリセット
+                currentTween.Kill();  // 現在のTweenを停止
+                currentTween = null;
             }
             chromaticAberration.intensity.value = 0;  // Intensityをリセット
+            Debug.Log("エフェクトを停止しました");
         }
     }
 
     // Chromatic AberrationのIntensityをアニメーションで永続的に増減させる
-    private IEnumerator AnimateChromaticAberrationIntensity()
+    private void AnimateChromaticAberrationEffect()
     {
-        while (true)
-        {
-            // IntensityをmaxIntensityに向かって増加させるアニメーション
-            yield return StartCoroutine(AnimateToValue(maxIntensity, increaseDuration, increaseType));
+        Sequence sequence = DOTween.Sequence();
 
-            // アニメーションの間の待機時間
-            yield return new WaitForSeconds(waitBetweenAnimations);
+        // IntensityをmaxIntensityに向かって増加させるアニメーション
+        sequence.Append(AnimateToValue(maxIntensity, increaseDuration, increaseType));
 
-            // Intensityを0に向かって減少させるアニメーション
-            yield return StartCoroutine(AnimateToValue(0, decreaseDuration, decreaseType));
+        // アニメーションの間の待機時間
+        sequence.AppendInterval(waitBetweenAnimations);
 
-        }
+        // Intensityを0に向かって減少させるアニメーション
+        sequence.Append(AnimateToValue(0, decreaseDuration, decreaseType));
+
+        // ループさせる
+        sequence.SetLoops(-1);
+
+        // 現在のTweenを保持しておく
+        currentTween = sequence;
     }
 
     // Intensityを目標値までアニメーションさせる
-    private IEnumerator AnimateToValue(float targetValue, float duration, AnimationType animationType)
+    private Tween AnimateToValue(float targetValue, float duration, AnimationType animationType)
     {
-        float startValue = chromaticAberration.intensity.value;
-        float elapsedTime = 0;
-
-        while (elapsedTime < duration)
+        Ease easeType = Ease.Linear;
+        switch (animationType)
         {
-            float t = elapsedTime / duration;
-
-            // アニメーションタイプに応じた補間
-            switch (animationType)
-            {
-                case AnimationType.Linear:
-                    chromaticAberration.intensity.value = Mathf.Lerp(startValue, targetValue, t);
-                    break;
-                case AnimationType.Exponential:
-                    chromaticAberration.intensity.value = Mathf.Lerp(startValue, targetValue, Mathf.Pow(t, 2));  // t^2で加速
-                    break;
-                case AnimationType.Logarithmic:
-                    chromaticAberration.intensity.value = Mathf.Lerp(startValue, targetValue, Mathf.Log10(t + 1) / Mathf.Log10(2)); // 対数で減速
-                    break;
-            }
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            case AnimationType.Exponential:
+                easeType = Ease.InQuad;  // 加速アニメーション
+                break;
+            case AnimationType.Logarithmic:
+                easeType = Ease.OutQuad;  // 減速アニメーション
+                break;
+            case AnimationType.Linear:
+            default:
+                easeType = Ease.Linear;
+                break;
         }
 
-        // 最後に目標値をセットして終了
-        chromaticAberration.intensity.value = targetValue;
+        return DOTween.To(() => chromaticAberration.intensity.value, x => chromaticAberration.intensity.value = x, targetValue, duration)
+                      .SetEase(easeType);
     }
 }
