@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class RotatingButtonRight : MonoBehaviour
@@ -7,6 +8,9 @@ public class RotatingButtonRight : MonoBehaviour
 
     [SerializeField]
     private ObjectColorChanger colorChanger; // 色の変更を管理するコンポーネント
+
+
+    bool fadeIn = false;
 
     private bool IsInteractionBlocked()
     {
@@ -25,6 +29,24 @@ public class RotatingButtonRight : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        var turnMana = GameTurnManager.Instance;
+        if ((turnMana.IsCurrentTurn(GameTurnManager.TurnState.PlayerRotateGroup) ||
+            turnMana.IsCurrentTurn(GameTurnManager.TurnState.OpponentRotateGroup))
+            && !fadeIn)
+        {
+            fadeInEffect();
+        }
+
+        if ((turnMana.IsCurrentTurn(GameTurnManager.TurnState.PlayerPlacePiece) ||
+            turnMana.IsCurrentTurn(GameTurnManager.TurnState.OpponentPlacePiece))
+            && fadeIn)
+        {
+            fadeOutEffect();
+        }
+    }
+
     private void OnMouseDown()
     {
         if (IsInteractionBlocked() || !rotatingManager.AnyMassClicked())
@@ -39,6 +61,18 @@ public class RotatingButtonRight : MonoBehaviour
     {
         TimeLimitController.Instance.StopTimer();
         rotatingManager.StartRotationRight(); // 右回転を開始
+    }
+
+    void fadeInEffect()
+    {
+        GetComponent<FadeInEffect>().StartFadeIn();
+        fadeIn = true;
+    }
+
+    void fadeOutEffect()
+    {
+        GetComponent<FadeOutEffect>().StartFadeOut();
+        fadeIn = false;
     }
 }
 

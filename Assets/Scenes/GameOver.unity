@@ -3468,7 +3468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1855924896}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  highlightedColor: {r: 0.3132075, g: 0, b: 0, a: 1}
+  highlightedColor: {r: 1, g: 0.90502363, b: 0, a: 1}
   transitionDuration: 0.3
 --- !u!114 &1855924896
 MonoBehaviour:
@@ -3854,7 +3854,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1892152303}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  highlightedColor: {r: 0.3132075, g: 0, b: 0, a: 1}
+  highlightedColor: {r: 1, g: 0.90502363, b: 0, a: 1}
   transitionDuration: 0.3
 --- !u!114 &1892152303
 MonoBehaviour:
@@ -4736,7 +4736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 5317361203806224997}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  highlightedColor: {r: 0.3132075, g: 0, b: 0, a: 1}
+  highlightedColor: {r: 1, g: 0.90502363, b: 0, a: 1}
   transitionDuration: 0.3
 --- !u!114 &5317361203806224997
 MonoBehaviour:
@@ -4837,7 +4837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 7514454035782322607}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  highlightedColor: {r: 0.3132075, g: 0, b: 0, a: 1}
+  highlightedColor: {r: 1, g: 0.90502363, b: 0, a: 1}
   transitionDuration: 0.3
 --- !u!4 &7167582730891858951
 Transform:

@@ -87,9 +87,9 @@ public class MassColorChecker : MonoBehaviour
 
     private IEnumerator HandleGameOverCoroutine()
     {
-        ScenesAudio.WinSe();
+        //ScenesAudio.WinSe();
+        //ToggleMassState();
         TimeLimitController.Instance.StopTimer();
-        ToggleMassState();
 
         // massのマテリアルカラーを指定した色に即時変更する
         foreach (var obj in mass)
@@ -112,7 +112,7 @@ public class MassColorChecker : MonoBehaviour
         });
 
         loadGameOver = true;
-        ScenesLoader.Instance.LoadGameOver(3.0f);
+        ScenesLoader.Instance.LoadGameOver(1.0f);
         yield return null; // Coroutineを終了するために待機（必要に応じて他の処理を追加）
     }
 

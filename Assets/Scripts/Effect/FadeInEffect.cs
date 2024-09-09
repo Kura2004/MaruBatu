@@ -8,6 +8,9 @@ public class FadeInEffect : MonoBehaviour
 
     private SpriteRenderer spriteRenderer; // SpriteRendererの参照
 
+    [SerializeField]
+    bool OnStart = true;
+
     private void Start()
     {
         // SpriteRendererコンポーネントを取得
@@ -25,7 +28,8 @@ public class FadeInEffect : MonoBehaviour
             spriteRenderer.color = color;
         }
 
-        StartFadeIn();
+        if (OnStart)
+            StartFadeIn();
     }
 
     /// <summary>
