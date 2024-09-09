@@ -102,7 +102,7 @@ public class GameTurnManager : SingletonMonoBehaviour<GameTurnManager>
         if (IsTurnChanging)
         {
             turnChangeCounter++;
-            if (turnChangeCounter >= 2)
+            if (turnChangeCounter >= 1)
             {
                 turnChangeCounter = 0;
                 IsTurnChanging = false;

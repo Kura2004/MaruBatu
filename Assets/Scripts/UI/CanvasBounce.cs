@@ -48,7 +48,7 @@ public class CanvasBounce : MonoBehaviour
         // キャンバスが落下する条件
         if (ShouldDropCanvas())
         {
-            DropCanvas();
+            //DropCanvas();
             Debug.Log("キャンバスが落下します");
         }
 

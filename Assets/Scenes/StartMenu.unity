@@ -577,7 +577,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 44
+  m_text: 'Play
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -604,8 +606,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -956,7 +958,7 @@ MonoBehaviour:
   - sceneName: StartMenu
     loadDuration: 0.7
   - sceneName: "4\xD74"
-    loadDuration: 0.7
+    loadDuration: 0.35
   - sceneName: GameOver
     loadDuration: 0.3
 --- !u!1 &375988626
@@ -1198,7 +1200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 404617702}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  highlightedColor: {r: 0.3132075, g: 0, b: 0, a: 1}
+  highlightedColor: {r: 1, g: 0.83486855, b: 0, a: 1}
   transitionDuration: 0.3
 --- !u!114 &404617702
 MonoBehaviour:
@@ -2480,7 +2482,7 @@ GameObject:
   - component: {fileID: 800913067}
   - component: {fileID: 800913066}
   m_Layer: 5
-  m_Name: "4\xD74"
+  m_Name: Play
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2535,7 +2537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 800913068}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  highlightedColor: {r: 0.3132075, g: 0, b: 0, a: 1}
+  highlightedColor: {r: 1, g: 0.83486855, b: 0, a: 1}
   transitionDuration: 0.3
 --- !u!114 &800913068
 MonoBehaviour:
@@ -3202,7 +3204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1119510775}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  highlightedColor: {r: 0.3132075, g: 0, b: 0, a: 1}
+  highlightedColor: {r: 1, g: 0.83486855, b: 0, a: 1}
   transitionDuration: 0.3
 --- !u!114 &1119510775
 MonoBehaviour:

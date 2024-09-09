@@ -9,7 +9,7 @@ public class RotatingMassObjectManager : MonoBehaviour
     private string massTag = "Mass"; // Tag名 (Inspectorで変更可能)
 
     [SerializeField]
-    private float rotationDuration = 1f; // 回転にかかる時間（秒）
+    public float rotationDuration = 1f; // 回転にかかる時間（秒）
 
     [SerializeField]
     private float rotationDegrees = 90f; // 回転する角度（度）
