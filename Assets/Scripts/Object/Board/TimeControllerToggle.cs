@@ -24,8 +24,8 @@ public class TimeControllerToggle : MonoBehaviour
     [SerializeField, Tooltip("パーティクルシステム")]
     private new ParticleSystem particleSystem;  // パーティクルシステム
 
-    [SerializeField]
-    ObjectShaker backShaker;
+    //[SerializeField]
+    //ObjectShaker backShaker;
 
     private GameObject spawnedObject;  // 生成されたオブジェクト
     private Tweener currentTween;  // 現在のアニメーションを管理するTweener
@@ -68,7 +68,7 @@ public class TimeControllerToggle : MonoBehaviour
         TimeLimitController.Instance.StopTimer();
         ScenesAudio.ShootSe();
         //ScenesAudio.PauseBgm();
-        backShaker.StopShake();
+        //backShaker.StopShake();
 
         // 現在のアニメーションを停止
         if (currentTween != null && currentTween.IsActive())
