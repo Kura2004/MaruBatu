@@ -36,8 +36,15 @@ public class MassColorChecker : MonoBehaviour
         var gameState = GameStateManager.Instance;
         if (!gameState.IsRotating && gameState.IsBoardSetupComplete && !loadGameOver)
         {
-            if (HasFourOrMorePlayerObjects() || HasFourOrMoreOpponentObjects())
+            if (HasFourOrMorePlayerObjects())
             {
+                MoveHorizontally.Instance.MoveRight();
+                StartCoroutine(HandleGameOverCoroutine());
+            }
+
+            if (HasFourOrMoreOpponentObjects())
+            {
+                MoveHorizontally.Instance.MoveLeft();
                 StartCoroutine(HandleGameOverCoroutine());
             }
         }
