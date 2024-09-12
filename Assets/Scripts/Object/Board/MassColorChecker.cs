@@ -13,12 +13,8 @@ public class MassColorChecker : MonoBehaviour
     [SerializeField]
     private Color targetColor = Color.red; // 変更後の色
 
-    private float resetDelay = 0.03f; // ResetBoardSetupを呼び出すまでの遅延時間
-
     private GameObject[] mass = new GameObject[4]; // オブジェクトを保存する配列
     private int massIndex = 0; // 配列のインデックス
-    private bool loadGameOver = false;
-    private bool shouldResetBoardSetup = false; // ResetBoardSetupを実行するかを示すフラグ
 
     private void OnTriggerStay(Collider other)
     {
@@ -33,30 +29,24 @@ public class MassColorChecker : MonoBehaviour
 
     private void Update()
     {
+        if (MainGameOverManager.loadGameOver) return;
         var gameState = GameStateManager.Instance;
-        if (!gameState.IsRotating && gameState.IsBoardSetupComplete && !loadGameOver)
+        if (!gameState.IsRotating && gameState.IsBoardSetupComplete)
         {
             if (HasFourOrMorePlayerObjects())
             {
-                MoveHorizontally.Instance.MoveRight();
+                
+                gameState.SetPlayerWin(true);
                 StartCoroutine(HandleGameOverCoroutine());
+                return;
             }
 
             if (HasFourOrMoreOpponentObjects())
             {
-                MoveHorizontally.Instance.MoveLeft();
+                gameState.SetOpponentWin(true);
                 StartCoroutine(HandleGameOverCoroutine());
+                return;
             }
-        }
-    }
-
-    private void LateUpdate()
-    {
-        // フラグが立っていればボードリセットの処理を実行
-        if (shouldResetBoardSetup)
-        {
-            ExecuteResetBoardSetup();
-            shouldResetBoardSetup = false; // フラグをリセット
         }
     }
 
@@ -91,12 +81,10 @@ public class MassColorChecker : MonoBehaviour
 
         return count >= 4; // 4つ以上のオブジェクトが指定した色であればtrueを返す
     }
-
-    private IEnumerator HandleGameOverCoroutine()
+    public IEnumerator HandleGameOverCoroutine()
     {
-        //ScenesAudio.WinSe();
         //ToggleMassState();
-        TimeLimitController.Instance.StopTimer();
+
 
         // massのマテリアルカラーを指定した色に即時変更する
         foreach (var obj in mass)
@@ -112,23 +100,9 @@ public class MassColorChecker : MonoBehaviour
                 }
             }
         }
-
-        // DOTweenを使って指定した遅延時間後にフラグを立てる
-        DOTween.Sequence().AppendInterval(resetDelay).AppendCallback(() => {
-            shouldResetBoardSetup = true; // 遅延後にフラグをセット
-        });
-
-        loadGameOver = true;
-        ScenesLoader.Instance.LoadGameOver(1.0f);
         yield return null; // Coroutineを終了するために待機（必要に応じて他の処理を追加）
     }
 
-    // ボードリセットの処理をメソッド化
-    private void ExecuteResetBoardSetup()
-    {
-        GameStateManager.Instance.ResetBoardSetup();
-        TimeLimitController.Instance.ResetEffect();
-    }
 
     // 登録したマスの状態を切り替えるメソッド
     public void ToggleMassState()

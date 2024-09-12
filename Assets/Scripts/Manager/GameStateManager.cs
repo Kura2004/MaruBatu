@@ -6,8 +6,13 @@ public class GameStateManager : SingletonMonoBehaviour<GameStateManager>
     // 回転状態を示すプロパティ
     public bool IsRotating { get; private set; } = false;
 
-    // 盤面セット完了フラグ（外部からのアクセスは可能だが、設定は内部のメソッドで行う）
     public bool IsBoardSetupComplete { get; private set; } = false;
+
+    // プレイヤーの勝利状態
+    public bool IsPlayerWin { get; private set; } = false;
+
+    // 相手の勝利状態
+    public bool IsOpponentWin { get; private set; } = false;
 
     // 回転を開始するメソッド
     public void StartRotation()
@@ -26,7 +31,6 @@ public class GameStateManager : SingletonMonoBehaviour<GameStateManager>
     public void SetBoardSetupComplete(bool isComplete)
     {
         IsBoardSetupComplete = isComplete;
-        //ScenesAudio.UnPauseBgm();
         TimeLimitController.Instance.StartTimer();
         Debug.Log("Board setup complete status: " + IsBoardSetupComplete);
     }
@@ -40,13 +44,10 @@ public class GameStateManager : SingletonMonoBehaviour<GameStateManager>
     // コルーチンで非同期に盤面セットアップ処理を行う
     private IEnumerator BoardSetupCoroutine(float setupDuration)
     {
-        // 盤面セットの処理をここに記述
         Debug.Log("Starting board setup...");
 
-        // 指定された秒数だけ待機
         yield return new WaitForSeconds(setupDuration);
 
-        // セットアップ完了後にフラグを更新
         SetBoardSetupComplete(true);
     }
 
@@ -55,5 +56,25 @@ public class GameStateManager : SingletonMonoBehaviour<GameStateManager>
     {
         IsBoardSetupComplete = false;
         Debug.Log("Board setup has been reset.");
+    }
+
+    // プレイヤーの勝利状態を設定するメソッド
+    public void SetPlayerWin(bool isWin)
+    {
+        IsPlayerWin = isWin;
+        Debug.Log("Player win status: " + IsPlayerWin);
+    }
+
+    // 相手の勝利状態を設定するメソッド
+    public void SetOpponentWin(bool isWin)
+    {
+        IsOpponentWin = isWin;
+        Debug.Log("Opponent win status: " + IsOpponentWin);
+    }
+
+    // 両者が勝利した場合に true を返すメソッド
+    public bool AreBothPlayersWinning()
+    {
+        return IsPlayerWin && IsOpponentWin;
     }
 }

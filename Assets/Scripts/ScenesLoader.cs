@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -53,6 +54,7 @@ public class ScenesLoader : SingletonMonoBehaviour<ScenesLoader>
         }
         else if (scene.name == "GameOver")
         {
+            // GameOver‚Ì‰Šú‰»ˆ—
         }
     }
 
@@ -91,3 +93,4 @@ public class ScenesLoader : SingletonMonoBehaviour<ScenesLoader>
         Debug.Log("GameOver‚ğ“Ç‚İ‚İ‚Ü‚·");
     }
 }
+
