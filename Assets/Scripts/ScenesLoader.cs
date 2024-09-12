@@ -25,11 +25,14 @@ public class ScenesLoader : SingletonMonoBehaviour<ScenesLoader>
     [Header("シーンのロード時間設定")]
     [SerializeField] private SceneSettings[] sceneSettings;
 
+    private bool isLocked = false; // ロック状態を管理する変数
+
     protected override void OnEnable()
     {
         // シーンがロードされたときに呼ばれるイベントを登録
         SceneManager.sceneLoaded += OnSceneLoaded;
         base.OnEnable();
+        isLocked = false;
     }
 
     private void OnDisable()
@@ -74,6 +77,12 @@ public class ScenesLoader : SingletonMonoBehaviour<ScenesLoader>
 
     public void LoadStage44()
     {
+        if (isLocked)
+        {
+            Debug.LogWarning("シーンのロード処理がロックされています。");
+            return;
+        }
+        isLocked = true;
         float loadDuration = GetSceneLoadDuration("4×4");
         FadeManager.Instance.LoadScene("4×4", loadDuration);
         Debug.Log("Stage44を読み込みます");
@@ -81,6 +90,12 @@ public class ScenesLoader : SingletonMonoBehaviour<ScenesLoader>
 
     public void LoadStartMenu()
     {
+        if (isLocked)
+        {
+            Debug.LogWarning("シーンのロード処理がロックされています。");
+            return;
+        }
+        isLocked = true;
         float loadDuration = GetSceneLoadDuration("StartMenu");
         FadeManager.Instance.LoadScene("StartMenu", loadDuration);
         Debug.Log("StartMenuを読み込みます");
@@ -88,6 +103,12 @@ public class ScenesLoader : SingletonMonoBehaviour<ScenesLoader>
 
     public void LoadGameOver(float duration)
     {
+        if (isLocked)
+        {
+            Debug.LogWarning("シーンのロード処理がロックされています。");
+            return;
+        }
+        isLocked = true;
         float loadDuration = GetSceneLoadDuration("GameOver");
         FadeManager.Instance.LoadScene("GameOver", duration);
         Debug.Log("GameOverを読み込みます");
