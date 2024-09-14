@@ -6,9 +6,9 @@ public class UIMoveMediator : MonoBehaviour
     [SerializeField] private UIMoveLeft moveLeft;   // 左に動かすクラス
 
     [SerializeField] bool moveRightNext; // 次にどちらに動かすかを管理するフラグ
-    private void Update()
+    private void LateUpdate()
     {
-        if (!GameStateManager.Instance.IsBoardSetupComplete) { return; }
+        if (!GameStateManager.Instance.IsBoardSetupComplete) return;
 
         var turnMana = GameTurnManager.Instance;
         if (turnMana.IsCurrentTurn(GameTurnManager.TurnState.PlayerPlacePiece) && GameTurnManager.Instance.IsTurnChanging)
@@ -47,5 +47,6 @@ public class UIMoveMediator : MonoBehaviour
         }
 
         moveRightNext = !moveRightNext; // 次回は反対の方向に動かす
+        
     }
 }
