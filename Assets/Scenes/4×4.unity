@@ -5780,8 +5780,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 2P
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d70bafd705138c049855bca8b7153826, type: 2}
+  m_sharedMaterial: {fileID: -7784023433475618575, guid: d70bafd705138c049855bca8b7153826, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6346,13 +6346,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206560616}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.17364816, w: 0.9848078}
+  m_LocalRotation: {x: 0, y: 0, z: -0.17364825, w: 0.9848078}
   m_LocalPosition: {x: 11, y: 0, z: 0}
   m_LocalScale: {x: 20, y: 50, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4648841552311621866}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 20}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -20}
 --- !u!65 &1206560618
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7087,8 +7087,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d70bafd705138c049855bca8b7153826, type: 2}
+  m_sharedMaterial: {fileID: -7784023433475618575, guid: d70bafd705138c049855bca8b7153826, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7327,13 +7327,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1890605165}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.17364816, w: 0.9848078}
+  m_LocalRotation: {x: 0, y: 0, z: -0.17364825, w: 0.9848078}
   m_LocalPosition: {x: -11, y: 0, z: 0}
   m_LocalScale: {x: 20, y: 50, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4648841552311621866}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 20}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -20}
 --- !u!65 &1890605167
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8346,9 +8346,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationAxis: 2
-  rotationAngle: -45
-  duration: 2
-  delay: 5
+  rotationAngle: 40
+  duration: 1
   rotationEase: 19
 --- !u!114 &5171092015921322021
 MonoBehaviour:

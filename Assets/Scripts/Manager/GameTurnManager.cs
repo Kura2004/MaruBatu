@@ -16,7 +16,6 @@ public class GameTurnManager : SingletonMonoBehaviour<GameTurnManager>
 
     public TurnState CurrentTurnState { get; private set; }
     public bool IsTurnChanging { get; private set; }
-    private int turnChangeCounter = 0;
     public bool IsGameStarted;
 
     public int TotalTurnCount { get; private set; }
@@ -33,11 +32,6 @@ public class GameTurnManager : SingletonMonoBehaviour<GameTurnManager>
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    private void Update()
-    {
-        ProcessTurnChange();
-    }
-
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Initialize();
@@ -49,7 +43,6 @@ public class GameTurnManager : SingletonMonoBehaviour<GameTurnManager>
         IsTurnChanging = false;
         IsGameStarted = false;
         TotalTurnCount = 0;
-        turnChangeCounter = 0;
     }
 
     public void AdvanceTurn()
@@ -96,23 +89,5 @@ public class GameTurnManager : SingletonMonoBehaviour<GameTurnManager>
         Debug.Log("TurnChange‚ªÝ’è‚³‚ê‚Ü‚µ‚½: " + IsTurnChanging);
     }
 
-    // LateUpdate“à‚Ìˆ—‚ðƒƒ\ƒbƒh‰»
-    private void ProcessTurnChange()
-    {
-        if (IsTurnChanging)
-        {
-            turnChangeCounter++;
-            if (turnChangeCounter >= 1)
-            {
-                turnChangeCounter = 0;
-                IsTurnChanging = false;
-
-                if (IsGameEnd())
-                {
-                    TimeLimitController.Instance.currentTime = 0;
-                }
-            }
-        }
-    }
 }
 

@@ -1,5 +1,5 @@
-using UnityEngine;
 using DG.Tweening;
+using UnityEngine;
 
 public class RotationSwitcher : MonoBehaviour
 {
@@ -13,19 +13,14 @@ public class RotationSwitcher : MonoBehaviour
     [SerializeField] private RotationAxis rotationAxis = RotationAxis.X; // ‰ñ“]‚·‚é²
     [SerializeField] private float rotationAngle = 45f; // ‰ñ“]Šp“x
     [SerializeField] private float duration = 2f; // ‰ñ“]‚É‚©‚©‚éŠÔ
-    [SerializeField] private float delay = 0.5f; // ‰ñ“]ÄŠJ‚Ì’x‰„ŠÔ
     [SerializeField] private Ease rotationEase = Ease.Linear; // ‰ñ“]‚ÌƒC[ƒWƒ“ƒO
 
-    private float rotationSpeed;
     private float currentRotation;
     private bool isRotating = false;
 
     private void Start()
     {
-        // ‰Šú‰ñ“]‘¬“x‚ğİ’è
-        rotationSpeed = rotationAngle / duration;
         currentRotation = 0f;
-        StartRotation();
     }
 
     private void StartRotation()
@@ -44,15 +39,12 @@ public class RotationSwitcher : MonoBehaviour
 
         rotationTween.OnComplete(() =>
         {
-            // ‰ñ“]‚ªŠ®—¹‚µ‚½Œã‚É’x‰„‚³‚¹‚é
-            DOVirtual.DelayedCall(delay, () =>
-            {
-                // ³•‰‚ğØ‚è‘Ö‚¦‚é
-                rotationAngle = -rotationAngle;
-                currentRotation = endRotation;
-                Rotate();
-            });
+            // ³•‰‚ğØ‚è‘Ö‚¦‚é
+            rotationAngle = -rotationAngle;
+            currentRotation = endRotation;
         });
+
+        GameTurnManager.Instance.SetTurnChange(false);
     }
 
     private Tween CreateRotationTween(float endRotation)
@@ -74,5 +66,23 @@ public class RotationSwitcher : MonoBehaviour
 
         return transform.DORotate(rotationVector, duration, RotateMode.LocalAxisAdd)
             .SetEase(rotationEase);
+    }
+
+    private void LateUpdate()
+    {
+        if (!GameStateManager.Instance.IsBoardSetupComplete) return;
+
+        var turnMana = GameTurnManager.Instance;
+        if (turnMana.IsCurrentTurn(GameTurnManager.TurnState.PlayerPlacePiece) && GameTurnManager.Instance.IsTurnChanging)
+        {
+            Debug.Log("1P‚Ìƒ^[ƒ“‚Å‚·");
+            Rotate();
+        }
+
+        if (turnMana.IsCurrentTurn(GameTurnManager.TurnState.OpponentPlacePiece) && GameTurnManager.Instance.IsTurnChanging)
+        {
+            Debug.Log("‘Šè‚Ìƒ^[ƒ“‚Å‚·");
+            Rotate();
+        }
     }
 }
