@@ -5885,7 +5885,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -8163,7 +8163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyOnSceneChange: 1
   postProcessVolume: {fileID: 1951368825}
-  maxIntensity: 0.6
+  maxIntensity: 0.15
   increaseDuration: 0.6
   decreaseDuration: 0.4
   waitBetweenAnimations: 0.3
@@ -8624,7 +8624,7 @@ GameObject:
   - component: {fileID: 256844266}
   - component: {fileID: 9193970656737370365}
   m_Layer: 7
-  m_Name: Zaphkiel
+  m_Name: clock
   m_TagString: Back
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8667,7 +8667,7 @@ MonoBehaviour:
   timerDisplay: {fileID: 1783412809}
   currentTime: 0
   isTimerRunning: 0
-  effectTriggerTime: 8
+  effectTriggerTime: 10
   effectDelay: 0.1
   isEffectTriggered: 0
 --- !u!114 &9193970656737370364
