@@ -43,7 +43,7 @@ public class ObjectColorChanger : MonoBehaviour
         }
     }
 
-    void OnMouseOver()
+    protected virtual void OnMouseOver()
     {
         if (ShouldChangeColorOnMouseOver())
         {

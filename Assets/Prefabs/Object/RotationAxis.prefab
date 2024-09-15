@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 2755204868025747258}
   - component: {fileID: 3547941803396635732}
   - component: {fileID: 1683480176511869666}
-  - component: {fileID: 5145453112970306620}
-  - component: {fileID: 789249229930280814}
-  - component: {fileID: 5378065090674033236}
+  - component: {fileID: 2855410061326597618}
+  - component: {fileID: 9179281462099799516}
   m_Layer: 0
   m_Name: LeftRotation
   m_TagString: Back
@@ -31,13 +30,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593976026201341192}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 0.09, y: -0, z: 0.13}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.01}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.13}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4911724511509825266}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!212 &166579771922265274
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -81,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9a227f60234dc484ca70b956e6f46ee2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4327a326e81e55c4a996bb8cd0c2e3e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,7 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originalColor: {r: 1, g: 1, b: 1, a: 1}
-  hoverAndClickColor: {r: 0, g: 1, b: 0.09436011, a: 1}
+  hoverAndClickColor: {r: 0, g: 1, b: 0.12549019, a: 1}
   colorChangeDuration: 0.3
   isClicked: 0
 --- !u!114 &1683480176511869666
@@ -134,36 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d4ef104006bf64baed9bea25b22eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5145453112970306620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593976026201341192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d23c60a1c2fafb43917056930e24ede, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeDuration: 0.3
-  startAlpha: 0.3
-  OnStart: 0
---- !u!114 &789249229930280814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593976026201341192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcc6d503805230b44b69a6f6855a5b48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeDuration: 0.3
-  targetAlpha: 0.3
---- !u!65 &5378065090674033236
+--- !u!65 &2855410061326597618
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,12 +148,36 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4, y: 2, z: 100}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 17, y: 8, z: 5}
+  m_Center: {x: 0, y: 5, z: 0}
+--- !u!114 &9179281462099799516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593976026201341192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f2d55408b7b97429b00c9aa40e4b22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 0.1
+  easeType: 1
+  redColor: {r: 1, g: 0, b: 0, a: 1}
+  greenColor: {r: 0, g: 1, b: 0, a: 1}
+  blueColor: {r: 0, g: 0, b: 1, a: 1}
+  yellowColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  whiteColor: {r: 1, g: 1, b: 1, a: 1}
+  blackColor: {r: 0, g: 0, b: 0, a: 1}
+  grayColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.39215687}
+  cyanColor: {r: 0, g: 1, b: 1, a: 1}
+  orangeColor: {r: 1, g: 0.5, b: 0, a: 1}
+  setOrange: 0
 --- !u!1 &2953546947597068712
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,9 +191,8 @@ GameObject:
   - component: {fileID: 7442033208943567216}
   - component: {fileID: 1427040279999471512}
   - component: {fileID: 5790789292583691859}
-  - component: {fileID: 2572760946017773397}
-  - component: {fileID: 6695218104077255801}
-  - component: {fileID: 8858833503616530473}
+  - component: {fileID: 9180938519088525533}
+  - component: {fileID: 8851157660237452206}
   m_Layer: 0
   m_Name: RightRotation
   m_TagString: Back
@@ -215,13 +208,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2953546947597068712}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: -0.02, y: -0, z: -0.01}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0.01}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4911724511509825266}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &6264736193563978896
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -265,7 +258,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 992f021224641e94a83cc383e44f66da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4327a326e81e55c4a996bb8cd0c2e3e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -303,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originalColor: {r: 1, g: 1, b: 1, a: 1}
-  hoverAndClickColor: {r: 1, g: 0.83783436, b: 0, a: 1}
+  hoverAndClickColor: {r: 0, g: 1, b: 0.12549019, a: 1}
   colorChangeDuration: 0.3
   isClicked: 0
 --- !u!114 &5790789292583691859
@@ -318,36 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d4ef104006bf64baed9bea25b22eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2572760946017773397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2953546947597068712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d23c60a1c2fafb43917056930e24ede, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeDuration: 0.3
-  startAlpha: 0.3
-  OnStart: 0
---- !u!114 &6695218104077255801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2953546947597068712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcc6d503805230b44b69a6f6855a5b48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeDuration: 0.3
-  targetAlpha: 0.3
---- !u!65 &8858833503616530473
+--- !u!65 &9180938519088525533
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -362,12 +326,36 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4, y: 2, z: 100}
-  m_Center: {x: 0, y: -1, z: 0}
+  m_Size: {x: 17, y: 8, z: 5}
+  m_Center: {x: 0, y: 5, z: 0}
+--- !u!114 &8851157660237452206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2953546947597068712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f2d55408b7b97429b00c9aa40e4b22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 0.1
+  easeType: 1
+  redColor: {r: 1, g: 0, b: 0, a: 1}
+  greenColor: {r: 0, g: 1, b: 0, a: 1}
+  blueColor: {r: 0, g: 0, b: 1, a: 1}
+  yellowColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  whiteColor: {r: 1, g: 1, b: 1, a: 1}
+  blackColor: {r: 0, g: 0, b: 0, a: 1}
+  grayColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.39215687}
+  cyanColor: {r: 0, g: 1, b: 1, a: 1}
+  orangeColor: {r: 1, g: 0.5, b: 0, a: 1}
+  setOrange: 1
 --- !u!1 &3384603433885392565
 GameObject:
   m_ObjectHideFlags: 0
