@@ -4,7 +4,10 @@ using DG.Tweening;
 public class FadeInEffect : MonoBehaviour
 {
     [SerializeField]
-    private float fadeDuration = 2f; // アルファ値が1になるまでの時間（秒）
+    private float fadeDuration = 2f; // アルファ値が指定の値になるまでの時間（秒）
+
+    [SerializeField]
+    private float startAlpha = 1f; //最初のα値
 
     private SpriteRenderer spriteRenderer; // SpriteRendererの参照
 
@@ -22,9 +25,8 @@ public class FadeInEffect : MonoBehaviour
         }
         else
         {
-            // アルファ値を0に設定しておく
-            Color color = spriteRenderer.color;
-            color.a = 0f;
+            // グレーに設定し、アルファ値を0に設定しておく
+            Color color = new Color(0.5f, 0.5f, 0.5f, startAlpha);
             spriteRenderer.color = color;
         }
 
@@ -40,10 +42,14 @@ public class FadeInEffect : MonoBehaviour
         if (spriteRenderer != null)
         {
             // 現在の色を取得
-            Color currentColor = spriteRenderer.color;
+            Color currentColor = Color.white;
 
             // DoTweenを使用してアルファ値を補完的に1まで増加させる
             spriteRenderer.DOColor(new Color(currentColor.r, currentColor.g, currentColor.b, 1f), fadeDuration)
+                          .SetEase(Ease.Linear);
+
+            // DoTweenを使用してアルファ値を指定した値まで増加させる
+            spriteRenderer.DOColor(currentColor, fadeDuration)
                           .SetEase(Ease.Linear);
         }
     }
