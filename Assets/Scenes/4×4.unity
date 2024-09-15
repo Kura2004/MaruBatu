@@ -7806,7 +7806,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 7853331954526669866}
   YOffset: 20
-  ZOffset: 3
+  ZOffset: 2.4
 --- !u!114 &2098926458
 MonoBehaviour:
   m_ObjectHideFlags: 0
