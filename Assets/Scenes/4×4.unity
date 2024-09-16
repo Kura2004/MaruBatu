@@ -7418,6 +7418,8 @@ GameObject:
   - component: {fileID: 1951368826}
   - component: {fileID: 1951368825}
   - component: {fileID: 1951368827}
+  - component: {fileID: 1951368829}
+  - component: {fileID: 1951368828}
   m_Layer: 6
   m_Name: PostProcessing
   m_TagString: Untagged
@@ -7474,6 +7476,47 @@ MonoBehaviour:
   colorB: {r: 0, g: 0.0854702, b: 1, a: 1}
   blendFactor: 0.5
   blendedColor: {r: 0, g: 0, b: 0, a: 0}
+  savedMaterial: {fileID: 2100000, guid: a16d5981cdfde164fbd1140893db4345, type: 2}
+--- !u!114 &1951368828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951368824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52080eec77e67dc4187d69e9b846f2d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyOnSceneChange: 1
+  postProcessVolume: {fileID: 1951368825}
+  maxIntensity: 0.15
+  increaseDuration: 0.6
+  decreaseDuration: 0.4
+  waitBetweenAnimations: 0.3
+  increaseType: 2
+  decreaseType: 2
+--- !u!114 &1951368829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951368824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb612e22e4c35ca41be06899b0f3daf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyOnSceneChange: 1
+  postProcessVolume: {fileID: 1951368825}
+  maxIntensity: 0.6
+  increaseDuration: 0.5
+  decreaseDuration: 0.4
+  waitDuration: 0.4
+  increaseType: 2
+  decreaseType: 2
 --- !u!1 &2048965746
 GameObject:
   m_ObjectHideFlags: 0
@@ -7984,8 +8027,6 @@ GameObject:
   - component: {fileID: 3479172062561246535}
   - component: {fileID: 3479172062561246536}
   - component: {fileID: 3479172062561246537}
-  - component: {fileID: 3479172062561246538}
-  - component: {fileID: 3479172062561246539}
   - component: {fileID: 3479172062561246540}
   m_Layer: 0
   m_Name: GameManager
@@ -8146,46 +8187,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnSceneChange: 1
---- !u!114 &3479172062561246538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2126200692571882273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb612e22e4c35ca41be06899b0f3daf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyOnSceneChange: 1
-  postProcessVolume: {fileID: 1951368825}
-  maxIntensity: 0.6
-  increaseDuration: 0.5
-  decreaseDuration: 0.4
-  waitDuration: 0.4
-  increaseType: 2
-  decreaseType: 2
---- !u!114 &3479172062561246539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2126200692571882273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52080eec77e67dc4187d69e9b846f2d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyOnSceneChange: 1
-  postProcessVolume: {fileID: 1951368825}
-  maxIntensity: 0.15
-  increaseDuration: 0.6
-  decreaseDuration: 0.4
-  waitBetweenAnimations: 0.3
-  increaseType: 2
-  decreaseType: 2
 --- !u!114 &3479172062561246540
 MonoBehaviour:
   m_ObjectHideFlags: 0

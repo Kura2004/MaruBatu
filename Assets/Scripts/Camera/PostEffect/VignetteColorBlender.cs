@@ -18,6 +18,9 @@ public class VignetteColorBlender : MonoBehaviour
     [SerializeField]
     private Color blendedColor; // 補完された色
 
+    [SerializeField]
+    private Material savedMaterial; // 保存用のマテリアル
+
     private void Start()
     {
         // PostProcessing Volume から Vignette エフェクトを取得
@@ -40,6 +43,56 @@ public class VignetteColorBlender : MonoBehaviour
         UpdateVignetteColor();
     }
 
+    private void OnEnable()
+    {
+        // 保存したマテリアルから colorA, colorB, blendFactor を初期化
+        if (savedMaterial != null)
+        {
+            // マテリアルのプロパティから色と補完割合を取得
+            if (savedMaterial.HasProperty("_ColorA"))
+            {
+                colorA = savedMaterial.GetColor("_ColorA");
+            }
+            if (savedMaterial.HasProperty("_ColorB"))
+            {
+                colorB = savedMaterial.GetColor("_ColorB");
+            }
+            if (savedMaterial.HasProperty("_BlendFactor"))
+            {
+                blendFactor = savedMaterial.GetFloat("_BlendFactor");
+            }
+
+            // 取得した値に基づいて色を更新
+            blendedColor = Color.Lerp(colorA, colorB, blendFactor);
+
+            // VignetteのColorプロパティに適用
+            if (vignette != null)
+            {
+                vignette.color.value = blendedColor;
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Saved Material is not set.");
+        }
+    }
+
+    private void OnDisable()
+    {
+        // colorA, colorB, blendFactor, blendedColor を保存用のマテリアルに適用
+        if (savedMaterial != null)
+        {
+            savedMaterial.SetColor("_ColorA", colorA);
+            savedMaterial.SetColor("_ColorB", colorB);
+            savedMaterial.SetFloat("_BlendFactor", blendFactor);
+            savedMaterial.color = blendedColor; // 保存用の色も更新
+        }
+        else
+        {
+            Debug.LogWarning("Saved Material is not set.");
+        }
+    }
+
     /// <summary>
     /// 2色の中間色をVignetteに適用し、インスペクターに表示
     /// </summary>
@@ -55,4 +108,3 @@ public class VignetteColorBlender : MonoBehaviour
         }
     }
 }
-
