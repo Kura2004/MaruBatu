@@ -18,11 +18,5 @@ public class ObjectColorChangerWithoutReset : ObjectColorChanger
             base.OnMouseExit();
         }
     }
-
-    public override void OnMouseDown()
-    {
-        if (!MouseInteractionWithTurnManager.IsInteractionBlocked() && !isClicked)
-            base.OnMouseDown();
-    }
 }
 
