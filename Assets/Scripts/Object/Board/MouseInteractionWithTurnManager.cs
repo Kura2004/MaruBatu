@@ -36,7 +36,7 @@ public class MouseInteractionWithTurnManager : MonoBehaviour
                turnManager.IsCurrentTurn(GameTurnManager.TurnState.PlayerRotateGroup) ||
                turnManager.IsCurrentTurn(GameTurnManager.TurnState.OpponentRotateGroup) ||
                TimeControllerToggle.isTimeStopped ||
-               (!stateManager.IsBoardSetupComplete && !stateManager.IsRotating);
+               !stateManager.IsBoardSetupComplete;
     }
 
     private void OnMouseDown()
@@ -48,7 +48,7 @@ public class MouseInteractionWithTurnManager : MonoBehaviour
         }
 
         ScenesAudio.ClickSe();
-        colorChanger.OnMouseDown();
+        colorChanger.handleToClick();
         GameTurnManager.Instance.SetTurnChange(true);
         GameTurnManager.Instance.AdvanceTurn(); // ターンを進める
         UpdateColorBasedOnTurn(); // 色を更新

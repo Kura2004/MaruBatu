@@ -52,7 +52,7 @@ public class ObjectColorChanger : MonoBehaviour
         }
     }
 
-    public virtual void OnMouseDown()
+    public void handleToClick()
     {
         if (objectRenderer != null)
         {
