@@ -118,13 +118,24 @@ public class ColorTransitionEffect : MonoBehaviour
 
     bool onEffect = false;
     [SerializeField] bool setOrange = false;
+    [SerializeField] RotatingMassObjectManager rotating;
+
+    private void OnMouseEnter()
+    {
+        rotating.isSelected = true;
+    }
+
+    private void OnMouseExit()
+    {
+        rotating.isSelected = false;
+    }
 
     private void Update()
     {
         var turnMana = GameTurnManager.Instance;
         if ((turnMana.IsCurrentTurn(GameTurnManager.TurnState.PlayerRotateGroup) ||
             turnMana.IsCurrentTurn(GameTurnManager.TurnState.OpponentRotateGroup))
-            && !onEffect)
+            && !onEffect && rotating.isSelected)
         {
             onEffect = true;
             if (setOrange)
@@ -141,6 +152,14 @@ public class ColorTransitionEffect : MonoBehaviour
         if ((turnMana.IsCurrentTurn(GameTurnManager.TurnState.PlayerPlacePiece) ||
             turnMana.IsCurrentTurn(GameTurnManager.TurnState.OpponentPlacePiece))
             && onEffect)
+        {
+            onEffect = false;
+            StartColorTransition(ColorTag.Gray);
+        }
+
+        if((turnMana.IsCurrentTurn(GameTurnManager.TurnState.PlayerRotateGroup) ||
+            turnMana.IsCurrentTurn(GameTurnManager.TurnState.OpponentRotateGroup))
+            && onEffect && !rotating.isSelected)
         {
             onEffect = false;
             StartColorTransition(ColorTag.Gray);

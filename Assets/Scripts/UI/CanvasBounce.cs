@@ -48,7 +48,7 @@ public class CanvasBounce : MonoBehaviour
         // キャンバスが落下する条件
         if (ShouldDropCanvas())
         {
-            //DropCanvas();
+            DropCanvas();
             Debug.Log("キャンバスが落下します");
         }
 
@@ -64,6 +64,7 @@ public class CanvasBounce : MonoBehaviour
                 TimeLimitController.Instance.ResetTimer();
                 TimeLimitController.Instance.StopTimer();
                 dropOnStart = false;
+                Destroy(this);
             }
 
             Debug.Log("キャンバスが上昇します");
