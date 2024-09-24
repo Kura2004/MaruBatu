@@ -50,6 +50,18 @@ public class RotatingMassObjectManager : MonoBehaviour
         }
     }
 
+    public bool isSelected = false;
+
+    private void OnMouseEnter()
+    {
+        isSelected = true;
+    }
+
+    private void OnMouseExit()
+    {
+        isSelected = false;
+    }
+
     public void StartRotationLeft()
     {
         StartCoroutine(RotateObject(-rotationDegrees));
@@ -92,9 +104,6 @@ public class RotatingMassObjectManager : MonoBehaviour
         OnRotationComplete();
     }
 
-    // オブジェクトの位置を更新するメソッドは不要になるので削除
-
-    // MakeObjectsChildren, ResetParentRelationships, OnRotationComplete メソッドはそのまま使用
 
     private void MakeObjectsChildren()
     {
