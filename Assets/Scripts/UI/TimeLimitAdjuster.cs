@@ -41,7 +41,7 @@ public class TimeLimitAdjuster : MonoBehaviour
     private void AdjustTimeLimit(int amount)
     {
         timeLimit += amount;
-        timeLimit = Mathf.Clamp(timeLimit, 10f, 60f); // ç≈è¨íl10ÅAç≈ëÂíl60Ç…êßå¿
+        timeLimit = Mathf.Clamp(timeLimit, 20f, 40f); 
         UpdateValueDisplay();
     }
 

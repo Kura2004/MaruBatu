@@ -14,6 +14,7 @@ public class CountdownText : MonoBehaviour
     [SerializeField] private float initialAlpha = 1f;
     [SerializeField] private float endAlpha = 0f;
     [SerializeField] private List<float> durations = new List<float>(); // 各アニメーションの補完時間
+    [SerializeField] private List<Color> countdownColors = new List<Color>(); // 各カウントダウンの色
 
     [SerializeField] private Ease panelFadeEase = Ease.OutCubic; // パネルフェードのイージングタイプ
     [SerializeField] private float panelDuration = 1.0f;
@@ -49,6 +50,9 @@ public class CountdownText : MonoBehaviour
         for (int i = 0; i < countdownNumbers.Length; i++)
         {
             countdownText.text = countdownNumbers[i];
+
+            // テキストの色を変更
+            ChangeTextColor(countdownColors[i]);
 
             // 補完時間をリストから取得
             float duration = durations[i];
@@ -128,6 +132,12 @@ public class CountdownText : MonoBehaviour
         countdownText.DOFade(targetAlpha, duration); // アルファ値の補完
     }
 
+    // テキストの色を変更
+    private void ChangeTextColor(Color color)
+    {
+        countdownText.color = color; // 指定された色に変更
+    }
+
     // 全ての補完時間を使ってUIパネルをフェードアウト
     public void FadeOutPanelAfterCountdown()
     {
@@ -135,4 +145,3 @@ public class CountdownText : MonoBehaviour
         uiPanel.DOFade(0f, panelDuration).SetEase(panelFadeEase); // イージングを設定
     }
 }
-
