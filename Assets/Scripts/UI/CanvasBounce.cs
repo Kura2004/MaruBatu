@@ -15,6 +15,8 @@ public class CanvasBounce : MonoBehaviour
     [SerializeField] protected float riseDuration = 0.3f; // 上昇アニメーションの時間
     [SerializeField] protected bool dropOnStart = false; // 最初にDropCanvasを呼び出すかどうかのフラグ
 
+    [SerializeField] CountdownText countdown;
+
     protected bool isFalling = false;
     protected bool isBouncingComplete = true; // バウンドアニメーションの完了フラグ
     public static bool isBlocked = false;
@@ -52,19 +54,17 @@ public class CanvasBounce : MonoBehaviour
             Debug.Log("キャンバスが落下します");
         }
 
-        // バウンドが完了している場合、かつ Q キーが押されたときにキャンバスを上昇させる
-        if (Input.GetKeyDown(KeyCode.Q) && !isFalling && isBouncingComplete)
+        if (Input.GetKeyDown(KeyCode.Q) && !isFalling && isBouncingComplete && dropOnStart)
         {
             RiseCanvas();
 
             if (dropOnStart)
             {
-                GameTurnManager.Instance.IsGameStarted = true;
-                GameStateManager.Instance.StartBoardSetup(1.6f);
+                GameStateManager.Instance.StartBoardSetup(countdown.GetTotalDuration());
+                StartCoroutine(countdown.StartCountdown());
                 TimeLimitController.Instance.ResetTimer();
                 TimeLimitController.Instance.StopTimer();
                 dropOnStart = false;
-                Destroy(this);
             }
 
             Debug.Log("キャンバスが上昇します");
@@ -73,7 +73,8 @@ public class CanvasBounce : MonoBehaviour
 
     protected virtual bool ShouldDropCanvas()
     {
-        return Input.GetKeyDown(KeyCode.Q) && !isFalling && canvasRectTransform.anchoredPosition.y != groundY;
+        return false;
+            //Input.GetKeyDown(KeyCode.Q) && !isFalling && canvasRectTransform.anchoredPosition.y != groundY;
     }
 
     protected void InitializeDrop()

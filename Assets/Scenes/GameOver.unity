@@ -2960,7 +2960,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
+  m_ScaleFactor: 2
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
@@ -2992,6 +2992,7 @@ MonoBehaviour:
   durationDampingFactor: 0.8
   riseDuration: 0.3
   dropOnStart: 0
+  countdown: {fileID: 0}
 --- !u!114 &4730287410791174129
 MonoBehaviour:
   m_ObjectHideFlags: 0
