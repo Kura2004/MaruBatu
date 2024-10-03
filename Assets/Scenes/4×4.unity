@@ -312,6 +312,7 @@ GameObject:
   - component: {fileID: 55530120}
   - component: {fileID: 55530122}
   - component: {fileID: 55530121}
+  - component: {fileID: 55530123}
   m_Layer: 5
   m_Name: Arm
   m_TagString: Untagged
@@ -376,6 +377,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55530119}
   m_CullTransparentMesh: 1
+--- !u!114 &55530123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55530119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ba29f5f3d2f7db4b9c2d1ae0bb86573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationAxis: {x: 0, y: 0, z: 1}
+  rotationAngle: 3
+  duration: 1
+  easing: 4
+  loopCount: -1
+  delayBetweenLoops: 3
 --- !u!1 &248654468
 GameObject:
   m_ObjectHideFlags: 0
@@ -7342,6 +7361,7 @@ GameObject:
   - component: {fileID: 1725790625}
   - component: {fileID: 1725790627}
   - component: {fileID: 1725790626}
+  - component: {fileID: 1725790628}
   m_Layer: 5
   m_Name: Arm
   m_TagString: Untagged
@@ -7406,6 +7426,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1725790624}
   m_CullTransparentMesh: 1
+--- !u!114 &1725790628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725790624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ba29f5f3d2f7db4b9c2d1ae0bb86573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationAxis: {x: 0, y: 0, z: 1}
+  rotationAngle: 3
+  duration: 1
+  easing: 4
+  loopCount: -1
+  delayBetweenLoops: 3
 --- !u!1 &1734696339
 GameObject:
   m_ObjectHideFlags: 0
@@ -8193,7 +8231,7 @@ MonoBehaviour:
   - 1.3
   - 1.3
   - 1.3
-  - 0.5
+  - 1
   countdownColors:
   - {r: 1, g: 1, b: 1, a: 0}
   - {r: 1, g: 1, b: 1, a: 0}
@@ -8631,7 +8669,7 @@ MonoBehaviour:
   columns: 4
   spacing: 5
   gridReferenceTransform: {fileID: 7853331954526669866}
-  spawnInterval: 0.05
+  spawnInterval: 0.0625
   activationOrder: 0c0000000d0000000e0000000f00000008000000090000000a0000000b0000000400000005000000060000000700000000000000010000000200000003000000
   generatedObjects: []
 --- !u!23 &1627192671085446158
@@ -9011,7 +9049,7 @@ MonoBehaviour:
   columns: 3
   spacing: 5
   gridReferenceTransform: {fileID: 7853331954526669866}
-  spawnInterval: 0.05
+  spawnInterval: 0.0625
   activationOrder: 060000000700000008000000030000000400000005000000000000000100000002000000
   generatedObjects: []
 --- !u!1 &5171092015921322019
