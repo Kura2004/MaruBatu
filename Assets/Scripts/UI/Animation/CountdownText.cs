@@ -62,9 +62,8 @@ public class CountdownText : MonoBehaviour
 
             yield return new WaitForSeconds(duration);
         }
+        AnimateFade(endAlpha, 0.3f);
 
-        // アニメーション終了後にテキストをnullに設定
-        countdownText.text = null;
     }
 
     // インデックスに応じた処理を実行
@@ -126,7 +125,6 @@ public class CountdownText : MonoBehaviour
         countdownText.transform.DOScale(targetScale, duration);
     }
 
-    // フェードアウトアニメーション
     private void AnimateFade(float targetAlpha, float duration)
     {
         countdownText.DOFade(targetAlpha, duration); // アルファ値の補完
