@@ -16,6 +16,7 @@ public class ObjectColorChanger : MonoBehaviour
     private Tween colorTween; // 色の補完用のTween
     public bool isClicked = false; // クリック状態を保持するフラグ
 
+    private bool isChanging = false;
     protected virtual void Start()
     {
         objectRenderer = GetComponent<Renderer>();
@@ -29,8 +30,7 @@ public class ObjectColorChanger : MonoBehaviour
     {
         if (objectRenderer != null)
         {
-            // マウスがオブジェクトに入ったときに色を補完的に変える
-            colorTween = objectRenderer.material.DOColor(hoverAndClickColor, colorChangeDuration);
+            ColorChange();
         }
     }
 
@@ -47,8 +47,7 @@ public class ObjectColorChanger : MonoBehaviour
     {
         if (ShouldChangeColorOnMouseOver())
         {
-            // マウスがオブジェクトに入ったときに色を補完的に変える
-            colorTween = objectRenderer.material.DOColor(hoverAndClickColor, colorChangeDuration);
+            ColorChange();
         }
     }
 
@@ -61,6 +60,16 @@ public class ObjectColorChanger : MonoBehaviour
         }
     }
 
+    private void ColorChange()
+    {
+        isChanging = true;
+        colorTween = objectRenderer.material.DOColor(hoverAndClickColor, colorChangeDuration)
+            .OnComplete(() =>
+            {
+                isChanging = false;
+            });
+    }
+
     public void ChangeHoverColor(Color newColor)
     {
         hoverAndClickColor = newColor;
@@ -69,6 +78,6 @@ public class ObjectColorChanger : MonoBehaviour
     private bool ShouldChangeColorOnMouseOver()
     {
         return !GameStateManager.Instance.IsRotating && !isClicked
-            && !objectRenderer.material.DOColor(hoverAndClickColor, colorChangeDuration).IsPlaying();
+            && !isChanging;
     }
 }
