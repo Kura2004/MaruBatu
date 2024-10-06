@@ -69,6 +69,12 @@ public class CanvasBounce : MonoBehaviour
 
             Debug.Log("キャンバスが上昇します");
         }
+
+        if (Input.GetKeyDown(KeyCode.W) && dropOnStart)
+        {
+            ScenesLoader.Instance.LoadStartMenu();
+            Debug.Log("スタート画面に戻ります");
+        }
     }
 
     protected virtual bool ShouldDropCanvas()
