@@ -5713,6 +5713,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveRight: {fileID: 580117252}
   moveLeft: {fileID: 580117253}
+  onColor: {r: 1, g: 1, b: 1, a: 1}
+  offColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+  animator: {fileID: 302921803}
   moveRightNext: 0
 --- !u!114 &580117252
 MonoBehaviour:
@@ -8260,6 +8263,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveRight: {fileID: 2093761876}
   moveLeft: {fileID: 2093761877}
+  onColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+  offColor: {r: 1, g: 1, b: 1, a: 1}
+  animator: {fileID: 248654470}
   moveRightNext: 0
 --- !u!114 &2093761876
 MonoBehaviour:
@@ -8706,8 +8712,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnSceneChange: 1
-  playerColor: {r: 0.5, g: 0, b: 0.5, a: 1}
-  opponentColor: {r: 0.56, g: 0.93, b: 0.56, a: 1}
+  playerColor: {r: 1, g: 0, b: 0, a: 1}
+  opponentColor: {r: 0, g: 0, b: 1, a: 1}
   currentColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &3479172062561246537
 MonoBehaviour:
