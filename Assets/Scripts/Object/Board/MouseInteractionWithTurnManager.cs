@@ -43,7 +43,7 @@ public class MouseInteractionWithTurnManager : MonoBehaviour
     {
         if (IsInteractionBlocked() || colorChanger.isClicked)
         {
-            //ScenesAudio.BlockSe();
+            ScenesAudio.BlockedSe();
             return;
         }
 

@@ -31,7 +31,7 @@ public class RotatingButtonLeft : MonoBehaviour
     {
         if (IsInteractionBlocked() || !rotatingManager.AnyMassClicked())
         {
-            //ScenesAudio.BlockSe();
+            ScenesAudio.BlockedSe();
             return;
         }
 
