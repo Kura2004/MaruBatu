@@ -30,6 +30,7 @@ public class RotatingButtonRight : MonoBehaviour
     {
         if (IsInteractionBlocked() || !rotatingManager.AnyMassClicked())
         {
+            ScenesAudio.BlockedSe();
             return;
         }
 
